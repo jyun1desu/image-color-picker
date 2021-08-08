@@ -3,6 +3,8 @@
 :root {
   --primary-brand: #ec7986;
   --second-brand: #f3e9e8;
+  --grey: #eee;
+  --light-grey: rgba(245, 245, 245, 0.541);
 }
 
 body {

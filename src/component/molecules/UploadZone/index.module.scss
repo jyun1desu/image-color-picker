@@ -1,0 +1,23 @@
+.uploadArea {
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px solid var(--grey);
+    background-color: var(--light-grey);
+
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+
+    margin-top: 60px;
+
+    .uploadCTA {
+        font-size: 2rem;
+        color: rgb(224, 224, 224);
+
+        span {
+            text-decoration: underline;
+            color:rgb(214, 214, 214);
+            cursor: pointer;
+        }
+    }
+};
