@@ -1,0 +1,20 @@
+.currentColorZone {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--dark-grey);
+    }
+
+    .colorBlock {
+        flex: 1 1 auto;
+        width: 100%;
+        height: 35px;
+        border-radius: 8px;
+        background-color: var(--primary-brand);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+}

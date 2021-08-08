@@ -11,12 +11,13 @@
     margin-top: 60px;
 
     .uploadCTA {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        letter-spacing: 1.5;
         color: rgb(224, 224, 224);
 
         span {
             text-decoration: underline;
-            color:rgb(214, 214, 214);
+            color:var(--dark-grey);
             cursor: pointer;
         }
     }

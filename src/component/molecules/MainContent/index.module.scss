@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+    & > div {
+        &:first-child {
+            flex: 0 0 60%;
+            margin-right: 30px;
+        }
+
+        &.settings {
+            position: sticky;
+            top: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            flex: 1 1 auto;
+
+
+            & > div {
+                &:first-child {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+
+    
+}
