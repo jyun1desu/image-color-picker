@@ -1,0 +1,14 @@
+.footer {
+    margin: auto auto 0;
+    color: var(--primary-brand);
+
+    .dividedLine {
+        color: var(--second-brand);
+        margin: 0 10px;
+    }
+
+    a {
+        color: var(--primary-brand);
+        text-decoration: none;
+    }
+}
