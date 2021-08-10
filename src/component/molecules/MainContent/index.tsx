@@ -24,6 +24,14 @@ const MainContent = (props: MainContentProperty) => {
     updatePickedColors([]);
   }, [imageData]);
 
+  const handleRemoveColor = (i: number) => {
+    updatePickedColors(pre=>{
+      const colors = [...pre];
+      colors.splice(i, 1)
+      return colors;
+    })
+  }
+
   return (
     <div className={styles.main}>
       <ImageCanva
@@ -42,6 +50,7 @@ const MainContent = (props: MainContentProperty) => {
         <PickedColorZone
           setColorDetail={setColorDetail}
           colorDetail={colorDetail}
+          onRemove={handleRemoveColor}
           onClear={() => updatePickedColors([])}
           pickedColors={pickedColors}
         />

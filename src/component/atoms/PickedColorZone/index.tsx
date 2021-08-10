@@ -10,11 +10,11 @@ const rgbToHex = (color: { r: number; g: number; b: number }) => {
   let red = r.toString(16);
   let green = g.toString(16);
   let blue = b.toString(16);
-
+  
   if (red.length === 1) red = "0" + red;
   if (green.length === 1) green = "0" + green;
   if (blue.length === 1) blue = "0" + blue;
-
+  
   return `#${red}${green}${blue}`.toUpperCase();
 };
 
@@ -25,35 +25,38 @@ const colorDataToRGB = (color: RBGColor) => {
 interface PaletteProperty {
   colors: RBGColor[];
   onClear: () => void;
+  onRemove: (i: number) => void;
   setColorDetail: React.Dispatch<React.SetStateAction<RBGColor>>;
 }
 
 const Palette = (props: PaletteProperty) => {
-  const { colors, onClear, setColorDetail } = props;
-
+  const { colors, onClear, setColorDetail, onRemove } = props;
+  
   if (!colors.length) {
     return (
       <span className={styles.empty}>haven't picked any, start to pick!</span>
-    );
-  }
-
-  return (
-    <div className={styles.paletteZone}>
+      );
+    }
+    
+    return (
+      <div className={styles.paletteZone}>
       <div className={styles.palette}>
         {colors.map((c, i) => {
           return (
             <span
-              onClick={() => setColorDetail(c)}
-              key={`color${i}`}
-              style={{ backgroundColor: colorDataToRGB(c) }}
-              className={styles.color}
+            onDoubleClick={()=>{onRemove(i)}}
+            onClick={() => setColorDetail(c)}
+            key={`color${i}`}
+            style={{ backgroundColor: colorDataToRGB(c) }}
+            className={styles.color}
             />
-          );
-        })}
+            );
+          })}
       </div>
-      <span onClick={onClear} className={styles.clear}>
-        clear all
-      </span>
+      <div className={styles.bottom}>
+      <span className={styles.hint}>double click to remove the color</span>
+      <span onClick={onClear} className={styles.clear}>clear all</span>
+      </div>
     </div>
   );
 };
@@ -111,9 +114,10 @@ interface PickedColorZoneProperty {
   setColorDetail: React.Dispatch<React.SetStateAction<RBGColor>>;
   pickedColors: RBGColor[];
   onClear: () => void;
+  onRemove: (i: number) => void;
 }
 const PickedColorZone = (props: PickedColorZoneProperty) => {
-  const { pickedColors, onClear, colorDetail, setColorDetail } = props;
+  const { pickedColors, colorDetail, setColorDetail, onClear, onRemove } = props;
   return (
     <div className={styles.pickedColorZone}>
       <span className={styles.title}>Picked Colors</span>
@@ -122,6 +126,7 @@ const PickedColorZone = (props: PickedColorZoneProperty) => {
         setColorDetail={setColorDetail}
         colors={pickedColors}
         onClear={onClear}
+        onRemove={onRemove}
       />
     </div>
   );
