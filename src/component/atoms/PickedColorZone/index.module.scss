@@ -68,10 +68,10 @@
 
   .value {
     padding: 5px 0;
-    margin: 0 15px;
+    margin: 0 10px;
     color: var(--black);
     font-family: source-code-pro;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .copyButton {
@@ -93,16 +93,40 @@
   }
 }
 
+
+.paletteZone {
+  display: flex;
+  flex-direction: column;  
+
+  .clear {
+    align-self: flex-end;
+    margin-top: 15px;
+    color: var(--dark-grey);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-brand);
+    }
+  }
+}
+
 .palette {
 	display: grid;
-	grid-gap: 6px;
-    grid-template-columns: repeat(6, 1fr);
+	grid-gap: 15px;
+  grid-template-columns: repeat(5, 1fr);
 
 	.color {
 		aspect-ratio: 1/1;
-		border-radius: 4px;
+    transition: transform .5s;
+		border-radius: 50%;
 		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 		background-color: var(--grey);
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 	}
 }
 
