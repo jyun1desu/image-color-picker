@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultImage from 'image/defaultImage.jpg';
+import DefaultImage from './defaultImageBase64';
 import styles from './index.module.scss';
 
 export default function ImageCanva() {
