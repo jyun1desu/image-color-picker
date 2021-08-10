@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageCanva from "component/atoms/ImageCanva";
 import CurrentColorZone from "component/atoms/CurrentColorZone";
 import PickedColorZone from "component/atoms/PickedColorZone";
 import { RBGColor } from "types";
 import styles from "./index.module.scss";
 
-export default function MainContent() {
+interface MainContentProperty {
+  imageData: string;
+}
+const MainContent = (props: MainContentProperty) => {
+  const { imageData } = props;
   const defaultColor = {
     r: 234,
     g: 121,
     b: 134,
     a: 255,
-  }
+  };
   const [currentColor, setCurrentColor] = useState<RBGColor>(defaultColor);
   const [colorDetail, setColorDetail] = useState<RBGColor>(defaultColor);
   const [pickedColors, updatePickedColors] = useState<RBGColor[]>([]);
 
+  useEffect(() => {
+    updatePickedColors([]);
+  }, [imageData]);
+
   return (
     <div className={styles.main}>
       <ImageCanva
+        imageData={imageData}
         onPickColor={() => {
           setColorDetail(currentColor);
           updatePickedColors((pre) => {
@@ -39,4 +48,6 @@ export default function MainContent() {
       </div>
     </div>
   );
-}
+};
+
+export default MainContent;

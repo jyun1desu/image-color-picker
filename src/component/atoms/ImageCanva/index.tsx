@@ -1,15 +1,15 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { useState } from "react";
 import { RBGColor } from "types";
-import DefaultImage from "./defaultImageBase64";
 import styles from "./index.module.scss";
 
 interface ImageCanvaProperty {
+  imageData: string;
   onPickColor: () => void;
   setCurrentColor: React.Dispatch<React.SetStateAction<RBGColor>>;
 }
 const ImageCanva = (props: ImageCanvaProperty) => {
-  const { setCurrentColor, onPickColor } = props;
+  const { imageData, setCurrentColor, onPickColor } = props;
   const refCanva = useRef<HTMLCanvasElement>(null);
   const refImage = useRef<HTMLImageElement>(null);
   const [mousePosition, setMousePosition] = useState<{
@@ -35,13 +35,13 @@ const ImageCanva = (props: ImageCanvaProperty) => {
     };
 
     creatCanvaContext(refCanva.current!, refImage.current!);
-  }, [refImage]);
+  }, [refImage, imageData]);
 
   const getCurrentColor = useCallback(
     (position: { x: number; y: number }) => {
       const { x, y } = position;
       const ctx = refCanva.current!.getContext("2d");
-      const colorData = ctx!.getImageData(x, y, 1.5, 1.5).data;
+      const colorData = ctx!.getImageData(x, y, 1, 1).data;
       const rgbData = {
         r: colorData[0],
         g: colorData[1],
@@ -70,7 +70,7 @@ const ImageCanva = (props: ImageCanvaProperty) => {
           })
         }
         ref={refImage}
-        src={DefaultImage}
+        src={imageData}
         alt="uploadImage"
       />
       <canvas

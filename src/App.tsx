@@ -1,23 +1,20 @@
-import { useState } from "react";
-import "./App.css";
+import { useState } from 'react';
 import Header from "component/molecules/Header";
 import UploadZone from "component/molecules/UploadZone";
 import MainContent from "component/molecules/MainContent";
 import Footer from "component/molecules/Footer";
-import { ImageBase64Context, defaultImage } from "model/imageBase64";
+import DefaultImage from "assets/defaultImageBase64";
+import "./App.css";
 
 function App() {
-  const [image, setImage] = useState(defaultImage);
-
+  const [imageData, setImageData] = useState(DefaultImage)
   return (
-    <ImageBase64Context.Provider value={{image, setImage}}>
       <div className="App">
         <Header />
-        <UploadZone />
-        <MainContent />
+        <UploadZone setImageData={setImageData}/>
+        <MainContent imageData={imageData} />
         <Footer />
       </div>
-    </ImageBase64Context.Provider>
   );
 }
 
