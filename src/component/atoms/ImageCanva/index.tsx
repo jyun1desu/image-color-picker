@@ -17,25 +17,34 @@ const ImageCanva = (props: ImageCanvaProperty) => {
     y: number;
   } | null>(null);
 
-  useEffect(() => {
-    const creatCanvaContext = (
-      canvaElement: HTMLCanvasElement,
-      imageElement: HTMLImageElement
-    ) => {
-      canvaElement.width = imageElement.width;
-      canvaElement.height = imageElement.height;
-      const ctx = canvaElement.getContext("2d");
-      ctx!.drawImage(
-        imageElement,
-        0,
-        0,
-        imageElement.width,
-        imageElement.height
-      );
-    };
 
+  const creatCanvaContext = useCallback((
+    canvaElement: HTMLCanvasElement,
+    imageElement: HTMLImageElement
+  ) => {
+    canvaElement.width = imageElement.width;
+    canvaElement.height = imageElement.height;
+    const ctx = canvaElement.getContext("2d");
+    ctx!.drawImage(
+      imageElement,
+      0,
+      0,
+      imageElement.width,
+      imageElement.height
+    );
+  },[]);
+
+  useEffect(() => {
+      const creatCanva = () => {
+        creatCanvaContext(refCanva.current!, refImage.current!);
+      }
+      window.addEventListener("resize", creatCanva);
+      return () => window.removeEventListener("resize", creatCanva);
+  }, [creatCanvaContext])
+
+  useEffect(() => {
     creatCanvaContext(refCanva.current!, refImage.current!);
-  }, [refImage, imageData]);
+  }, [refImage, imageData, creatCanvaContext]);
 
   const getCurrentColor = useCallback(
     (position: { x: number; y: number }) => {
