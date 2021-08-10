@@ -7,31 +7,39 @@ interface UploadZoneProperty {
 }
 export default function UploadZone(props: UploadZoneProperty) {
   const { setImageData } = props;
-  const onDrop = React.useCallback((acceptedFiles) => {
-    const image = acceptedFiles[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(image);
-    reader.onload = () => {
-      const imageBase64 = reader.result as string;
-      setImageData(imageBase64);
-    };
-
-  }, [setImageData]);
+  const onDrop = React.useCallback(
+    (acceptedFiles) => {
+      const image = acceptedFiles[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = () => {
+        const imageBase64 = reader.result as string;
+        setImageData(imageBase64);
+      };
+    },
+    [setImageData]
+  );
 
   const config = {
-    accept: 'image/jpeg, image/png, image/jpg',
-    onDrop, 
-    multiple: false
-  }
+    accept: "image/jpeg, image/png, image/jpg",
+    onDrop,
+    multiple: false,
+  };
 
-  const { getRootProps, getInputProps } = useDropzone(config);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone(config);
 
   return (
     <div className={styles.uploadArea} {...getRootProps()}>
       <input {...getInputProps()} />
       <p className={styles.uploadCTA}>
-        {`Drop Your File Here or `}
-        <span>Select It</span>
+        {isDragActive ? (
+          "Drop Here ..."
+        ) : (
+          <>
+            {`Drop Your File Here or `}
+            <span>Select It</span>
+          </>
+        )}
       </p>
     </div>
   );
