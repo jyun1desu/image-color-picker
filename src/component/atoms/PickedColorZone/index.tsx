@@ -4,10 +4,6 @@ import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { RBGColor } from "types";
 import styles from "./index.module.scss";
 
-interface CodeAreaProperty {
-  type: "HEX" | "RGB";
-  value: string;
-}
 
 const rgbToHex = (color: { r: number; g: number; b: number }) => {
   const { r, g, b } = color;
@@ -62,13 +58,26 @@ const Palette = (props: PaletteProperty) => {
   );
 };
 
+interface CodeAreaProperty {
+  type: "HEX" | "RGB";
+  value: string;
+}
 const CodeArea = (props: CodeAreaProperty) => {
   const { type, value } = props;
+
+  const copyCode = (value: string) => {
+    navigator.clipboard.writeText(value)
+    /**
+     * todo: some ui
+     * .then(async () => {})
+     */
+}
+
   return (
     <div className={styles.code}>
       <span className={styles.type}>{type}</span>
       <span className={styles.value}>{value}</span>
-      <button className={styles.copyButton}>
+      <button onClick={()=>copyCode(value)} className={styles.copyButton}>
         <FontAwesomeIcon icon={faCopy} />
       </button>
     </div>
