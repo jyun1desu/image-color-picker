@@ -10,6 +10,9 @@ export default function UploadZone(props: UploadZoneProperty) {
   const onDrop = React.useCallback(
     (acceptedFiles) => {
       const image = acceptedFiles[0];
+      if (!image) {
+        return;
+      }
       let reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = () => {
@@ -21,24 +24,36 @@ export default function UploadZone(props: UploadZoneProperty) {
   );
 
   const config = {
-    accept: "image/jpeg, image/png, image/jpg",
+    accept: "image/jpeg, image/png, image/jpg, image/bmp",
     onDrop,
     multiple: false,
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone(config);
+  const { getRootProps, getInputProps, isDragActive, isDragReject } =
+    useDropzone(config);
+
+  const NormalContent = () => (
+    <>
+      {isDragActive ? (
+        "Drop Here ..."
+      ) : (
+        <>
+          {`Drop Your File Here or `}
+          <span>Select It</span>
+          <p className={styles.accepted}>jpg, jpeg, png, bmp are accepted</p>
+        </>
+      )}
+    </>
+  );
 
   return (
     <div className={styles.uploadArea} {...getRootProps()}>
       <input {...getInputProps()} />
       <p className={styles.uploadCTA}>
-        {isDragActive ? (
-          "Drop Here ..."
+        {!isDragReject ? (
+          <NormalContent />
         ) : (
-          <>
-            {`Drop Your File Here or `}
-            <span>Select It</span>
-          </>
+          "this is not accepted files"
         )}
       </p>
     </div>
