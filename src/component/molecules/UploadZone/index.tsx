@@ -38,9 +38,8 @@ export default function UploadZone(props: UploadZoneProperty) {
         "Drop Here ..."
       ) : (
         <>
-          {`Drop Your File Here or `}
-          <span>Select It</span>
-          <p className={styles.accepted}>jpg, jpeg, png, bmp are accepted</p>
+          <p className={styles.actionText}>{`Drop Your File Here or `}<span>Select It</span></p>
+          <span className={styles.accepted}>jpg, jpeg, png, bmp are accepted</span>
         </>
       )}
     </>
@@ -49,13 +48,13 @@ export default function UploadZone(props: UploadZoneProperty) {
   return (
     <div className={styles.uploadArea} {...getRootProps()}>
       <input {...getInputProps()} />
-      <p className={styles.uploadCTA}>
+      <div className={styles.uploadCTA}>
         {!isDragReject ? (
           <NormalContent />
         ) : (
-          "this is not accepted files"
+          <p>this is not accepted files</p>
         )}
-      </p>
+      </div>
     </div>
   );
 }

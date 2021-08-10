@@ -1,31 +1,39 @@
 .uploadArea {
-    align-self: stretch;
-    border-radius: 8px;
-    border: 1px solid var(--grey);
-    background-color: var(--light-grey);
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--grey);
+  background-color: var(--light-grey);
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  height: 150px;
+  box-sizing: border-box;
+
+  margin-top: 60px;
+
+  .uploadCTA {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding: 50px;
-    height: 200px;
-    box-sizing: border-box;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: rgb(224, 224, 224);
 
-    margin-top: 60px;
-
-    .uploadCTA {
-        font-size: 1.5rem;
-        letter-spacing: 1.5;
-        color: rgb(224, 224, 224);
-
-        span {
-            text-decoration: underline;
-            color:var(--dark-grey);
-            cursor: pointer;
-        }
-
-        .accepted {
-            text-align: center;
-            font-size: 1rem;
-        }
+    .actionText {
+      margin: 0 0 10px 0;
+      & > span {
+        text-decoration: underline;
+        color: var(--dark-grey);
+        cursor: pointer;
+      }
     }
-};
+
+    .accepted {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+}
