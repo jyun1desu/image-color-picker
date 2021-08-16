@@ -4,17 +4,16 @@ import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { RBGColor } from "types";
 import styles from "./index.module.scss";
 
-
 const rgbToHex = (color: { r: number; g: number; b: number }) => {
   const { r, g, b } = color;
   let red = r.toString(16);
   let green = g.toString(16);
   let blue = b.toString(16);
-  
+
   if (red.length === 1) red = "0" + red;
   if (green.length === 1) green = "0" + green;
   if (blue.length === 1) blue = "0" + blue;
-  
+
   return `#${red}${green}${blue}`.toUpperCase();
 };
 
@@ -31,31 +30,37 @@ interface PaletteProperty {
 
 const Palette = (props: PaletteProperty) => {
   const { colors, onClear, setColorDetail, onRemove } = props;
-  
+
   if (!colors.length) {
     return (
       <span className={styles.empty}>haven't picked any, start to pick!</span>
-      );
-    }
-    
-    return (
-      <div className={styles.paletteZone}>
+    );
+  }
+
+  return (
+    <div className={styles.paletteZone}>
       <div className={styles.palette}>
         {colors.map((c, i) => {
           return (
             <span
-            onDoubleClick={()=>{onRemove(i)}}
-            onClick={() => setColorDetail(c)}
-            key={`color${i}`}
-            style={{ backgroundColor: colorDataToRGB(c) }}
-            className={styles.color}
-            />
-            );
-          })}
+              onDoubleClick={() => {
+                onRemove(i);
+              }}
+              onClick={() => setColorDetail(c)}
+              key={`color${i}`}
+              style={{ backgroundColor: colorDataToRGB(c) }}
+              className={styles.color}
+            >
+              <span />
+            </span>
+          );
+        })}
       </div>
       <div className={styles.bottom}>
-      <span className={styles.hint}>double click to remove the color</span>
-      <span onClick={onClear} className={styles.clear}>clear all</span>
+        <span className={styles.hint}>double click to remove the color</span>
+        <span onClick={onClear} className={styles.clear}>
+          clear all
+        </span>
       </div>
     </div>
   );
@@ -69,18 +74,18 @@ const CodeArea = (props: CodeAreaProperty) => {
   const { type, value } = props;
 
   const copyCode = (value: string) => {
-    navigator.clipboard.writeText(value)
+    navigator.clipboard.writeText(value);
     /**
      * todo: some ui
      * .then(async () => {})
      */
-}
+  };
 
   return (
     <div className={styles.code}>
       <span className={styles.type}>{type}</span>
       <span className={styles.value}>{value}</span>
-      <button onClick={()=>copyCode(value)} className={styles.copyButton}>
+      <button onClick={() => copyCode(value)} className={styles.copyButton}>
         <FontAwesomeIcon icon={faCopy} />
       </button>
     </div>
@@ -117,7 +122,8 @@ interface PickedColorZoneProperty {
   onRemove: (i: number) => void;
 }
 const PickedColorZone = (props: PickedColorZoneProperty) => {
-  const { pickedColors, colorDetail, setColorDetail, onClear, onRemove } = props;
+  const { pickedColors, colorDetail, setColorDetail, onClear, onRemove } =
+    props;
   return (
     <div className={styles.pickedColorZone}>
       <span className={styles.title}>Picked Colors</span>

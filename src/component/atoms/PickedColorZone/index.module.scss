@@ -95,10 +95,6 @@
 
 .paletteZone {
   .palette {
-    display: grid;
-    grid-gap: 15px;
-    grid-template-columns: repeat(5, 1fr);
-
     .color {
       aspect-ratio: 1/1;
       transition: transform 0.5s;
@@ -113,6 +109,35 @@
       }
     }
   }
+  
+  @supports (display: grid) {
+    .palette {
+      display: grid;
+      grid-gap: 15px;
+      grid-template-columns: repeat(5, 1fr);
+
+      .color {
+        aspect-ratio: 1/1;
+      }
+    }
+  }
+
+  @supports not(display: gird) {
+    .palette {
+      display: flex;
+      flex-wrap: wrap;
+
+      .color {
+        flex: 0 0 calc((100% - (15px * 4)) / 5);
+        font-size: 0;
+        & > span {
+          display: inline-block;
+          width: 100%;
+          padding-bottom: 100%;
+        }
+      }
+    }
+    }
 
   .bottom {
     display: flex;
