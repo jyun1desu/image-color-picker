@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/image-color-picker/static/css/main.6552408b.chunk.css",
-    "main.js": "/image-color-picker/static/js/main.bce18f22.chunk.js",
-    "main.js.map": "/image-color-picker/static/js/main.bce18f22.chunk.js.map",
+    "main.css": "/image-color-picker/static/css/main.6ed7afd2.chunk.css",
+    "main.js": "/image-color-picker/static/js/main.16e31f43.chunk.js",
+    "main.js.map": "/image-color-picker/static/js/main.16e31f43.chunk.js.map",
     "runtime-main.js": "/image-color-picker/static/js/runtime-main.8b553494.js",
     "runtime-main.js.map": "/image-color-picker/static/js/runtime-main.8b553494.js.map",
     "static/js/2.51be0ad5.chunk.js": "/image-color-picker/static/js/2.51be0ad5.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.0b39fd37.chunk.js": "/image-color-picker/static/js/3.0b39fd37.chunk.js",
     "static/js/3.0b39fd37.chunk.js.map": "/image-color-picker/static/js/3.0b39fd37.chunk.js.map",
     "index.html": "/image-color-picker/index.html",
-    "static/css/main.6552408b.chunk.css.map": "/image-color-picker/static/css/main.6552408b.chunk.css.map",
+    "static/css/main.6ed7afd2.chunk.css.map": "/image-color-picker/static/css/main.6ed7afd2.chunk.css.map",
     "static/js/2.51be0ad5.chunk.js.LICENSE.txt": "/image-color-picker/static/js/2.51be0ad5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8b553494.js",
     "static/js/2.51be0ad5.chunk.js",
-    "static/css/main.6552408b.chunk.css",
-    "static/js/main.bce18f22.chunk.js"
+    "static/css/main.6ed7afd2.chunk.css",
+    "static/js/main.16e31f43.chunk.js"
   ]
 }
